@@ -372,7 +372,7 @@ define nginx::resource::location (
         concat::fragment { "${server_sanitized}-${priority}-${location_md5}":
           target  => $config_file,
           content => template('nginx/server/location.erb'),
-          order   => $priority,
+          order   => "${priority}",
         }
       }
 
@@ -383,7 +383,7 @@ define nginx::resource::location (
         concat::fragment { "${server_sanitized}-${ssl_priority}-${location_md5}-ssl":
           target  => $config_file,
           content => template('nginx/server/location.erb'),
-          order   => $ssl_priority,
+          order   => "${ssl_priority}",
         }
       }
     }
